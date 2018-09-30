@@ -1,0 +1,41 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "FizzBuzzKata Build",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/FizzBuzzKata/FizzBuzzKata.sln",
+            ],
+            "problemMatcher": "$msCompile",
+            "group": "build"
+        },
+        {
+            "label": "FizzBuzzKata Tests",
+            "type": "shell",
+            "command": "dotnet vstest (Get-ChildItem $PSScriptRoot -Recurse -File *Tests.dll | ? { $_.FullName -match '\\\\FizzBuzzKata\\\\?' } | ? { $_.FullName -notmatch '\\\\obj\\\\?' }  | foreach { $_.FullName }) /logger:'console;verbosity=normal'",
+            "group": "test"
+        },
+        {
+            "label": "StringCalculatorKata Build",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/StringCalculatorKata/StringCalculatorKata.sln",
+            ],
+            "problemMatcher": "$msCompile",
+            "group": "build"
+        },
+        {
+            "label": "StringCalculatorKata Tests",
+            "type": "shell",
+            "command": "dotnet vstest (Get-ChildItem $PSScriptRoot -Recurse -File *Tests.dll | ? { $_.FullName -match '\\\\StringCalculatorKata\\\\?' } | ? { $_.FullName -notmatch '\\\\obj\\\\?' }  | foreach { $_.FullName }) /logger:'console;verbosity=normal'",
+            "group": "test"
+        }
+    ]
+}
